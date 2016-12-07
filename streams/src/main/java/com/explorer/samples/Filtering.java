@@ -8,13 +8,19 @@ public class Filtering {
 
 	public static void main(String[] args) {
 		List<Person> persons = getRandomPersons();
+		
 
 		persons.parallelStream().filter(s -> {
-			if (s.sex == SEX.FEMALE)
+			if (s.sex == SEX.MALE)
 				return true;
 			else
 				return false;
-		}).forEach(s -> {
+		}).map(s->{
+			s.setName(s.getName().toUpperCase()); 
+			return s;
+		}).sorted((p1,p2) -> {
+			return Integer.compare(p1.getAge(),p2.getAge());
+		}).forEachOrdered(s -> {
 			System.out.println(s);
 		});
 		;
@@ -30,6 +36,12 @@ public class Filtering {
 		persons.add(f.new Person("linda",r.nextInt(100),SEX.FEMALE));
 		persons.add(f.new Person("kathy",r.nextInt(100),SEX.FEMALE));
 		persons.add(f.new Person("bob",r.nextInt(100),SEX.MALE));
+		persons.add(f.new Person("robet",r.nextInt(100),SEX.MALE));
+		persons.add(f.new Person("ben",r.nextInt(100),SEX.MALE));
+		persons.add(f.new Person("krish",r.nextInt(100),SEX.MALE));
+		persons.add(f.new Person("sara",r.nextInt(100),SEX.FEMALE));
+		persons.add(f.new Person("amy",r.nextInt(100),SEX.FEMALE));
+		persons.add(f.new Person("don",r.nextInt(100),SEX.MALE));
 		return persons; 
 	}
 	
