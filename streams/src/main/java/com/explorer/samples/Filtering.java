@@ -10,7 +10,7 @@ public class Filtering {
 		List<Person> persons = getRandomPersons();
 
 		persons.parallelStream().filter(s -> {
-			if (s.sex == SEX.MALE)
+			if (s.sex == SEX.FEMALE)
 				return true;
 			else
 				return false;
