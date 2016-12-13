@@ -40,4 +40,4 @@ OuterClass.InnerClass innerObject = outerObject.new InnerClass();
 
 There are two special kinds of inner classes: local classes and anonymous classes.
 
-Serialization of inner classes, including local and anonymous classes, is strongly discouraged. 
+Serialization of inner classes, including local and anonymous classes, is strongly discouraged. Serialization of inner classes, including local and anonymous classes, is strongly discouraged. When the Java compiler compiles certain constructs, such as inner classes, it creates synthetic constructs; these are classes, methods, fields, and other constructs that do not have a corresponding construct in the source code. Synthetic constructs enable Java compilers to implement new Java language features without changes to the JVM. However, synthetic constructs can vary among different Java compiler implementations, which means that .class files can vary among different implementations as well. Consequently, you may have compatibility issues if you serialize an inner class and then deserialize it with a different JRE implementation.
