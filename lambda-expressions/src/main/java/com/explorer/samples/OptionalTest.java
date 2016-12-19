@@ -14,8 +14,34 @@ public class OptionalTest {
 		}
 		
 		System.out.println(a.getB());
-		String text  = a.getB().orElse(test.new B()).getC().orElse(test.new C()).getText().orElse("not present"); 
-	
+		//String text  = a.getB().orElse(test.new B()).getC().orElse(test.new C()).getText().orElse("not present"); 
+		//test1
+		
+		// not allowerd
+		//Optional<A> r1 = Optional.of(null);
+		
+		Optional<A> r1 = Optional.of(a);
+		
+		Optional<A> r2 = Optional.ofNullable(null);
+		System.out.println("r2 : "+r2);
+		System.out.println("r2 getB: "+r2.flatMap(A::getB)); // returns empty not null
+		System.out.println("Printing value of B");
+		r2.ifPresent(System.out::print);
+		System.out.println("Printing value of B done");
+		//exception
+		//System.out.println("r2 A : "+r2.get());
+		
+		Optional<String> result1  = Optional.empty();
+		System.out.println(result1);
+		
+		Optional<A> r3 = Optional.ofNullable(null);
+		A aa = r3.orElse(a);
+		System.out.println("aa: "+aa);
+		
+		
+		Optional<String> result  = a.getB().flatMap(B::getC).map(C::getText).orElse(Optional.empty());
+		System.out.println("result"+result);
+		
 		
 	}
 
