@@ -17,3 +17,7 @@ reduced value. This is equivalent to:
      for (T element : this stream)
          result = reducer.apply(result, element)
      return result;
+     
+     Database SQL Tuning Guide
+     
+     https://docs.oracle.com/database/121/TGSQL/toc.htm
