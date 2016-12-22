@@ -94,6 +94,38 @@
 </li>
 </ul>
 		
+<div>
+	<h3>Concurrency</h3>
+	<div>http://tutorials.jenkov.com/java-concurrency/index.html</div>
+</div>
+		
+				
+<ul class="tree">
+<li><a href="#">Deadlock Prevention</a>
+ <ul>
+	<li><a href="#">Lock Ordering </a>
+		<ul>
+			<li>It can only be used if you know about all locks needed ahead of taking any of the locks. This is not always the case.</li>
+		</ul>
+	 </li>	
+	<li><a href="#">Lock Timeout</a>
+		<ul>
+			<li> If a thread does not succeed in taking all necessary locks within the given timeout, it will backup, free all locks taken, wait for a random amount of time and then retry. </li>
+			<li> An issue to keep in mind is, that just because a lock times out it does not necessarily mean that the threads had deadlocked. It could also just mean that the thread holding the lock (causing the other thread to time out) takes a long time to complete its task. </li>
+			<li>Additionally, if enough threads compete for the same resources they still risk trying to take the threads at the same time again and again, even if timing out and backing up.</li>
+		</ul>
+	 </li>	
+	 <li><a href="#">Deadlock Detection </a>	
+ 		<ul>
+			<li>Every time a thread takes a lock it is noted in a data structure (map, graph etc.) of threads and locks. Additionally, whenever a thread requests a lock this is also noted in this data structure.</li>
+			<li>travaerse through the graph to know the detect the deadlock</li>
+			<li>if deadlock - release all locks, backup, wait a random amount of time and then retry. you may give random priority to threads</li>
+		 </ul>
+	 </li>
+ </ul>
+</li>
+</ul>
+		
 		
 		<script>
 		var tree = document.querySelectorAll('ul.tree a:not(:last-child)');
