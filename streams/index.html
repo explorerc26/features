@@ -1,0 +1,81 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @explorerc26
+ Watch 0
+  Star 0
+  Fork 0 explorerc26/features
+ Code  Issues 1  Pull requests 0  Projects 1  Wiki  Pulse  Graphs  Settings
+Branch: master Find file Copy pathfeatures/index.html
+9e3b8f0  a day ago
+@explorerc26 explorerc26 Update index.html
+1 contributor
+RawBlameHistory     
+150 lines (132 sloc)  3.83 KB
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Overview</title>
+		<style>
+		body {
+		  font-family: Arial;
+		}
+		ul.tree li {
+		  list-style-type: none;
+		  position: relative;
+		}
+		ul.tree li ul {
+		  display: none;
+		}
+		ul.tree li.open > ul {
+		  display: block;
+		}
+		ul.tree li a {
+		  color: black;
+		  text-decoration: none;
+		}
+		ul.tree li a:before {
+		  height: 1em;
+		  padding: 0 .1em;
+		  font-size: .8em;
+		  display: block;
+		  position: absolute;
+		  left: -1.3em;
+		  top: .2em;
+		}
+		ul.tree li > a:not(:last-child):before {
+		  content: '+';
+		}
+		ul.tree li.open > a:not(:last-child):before {
+		  content: '-';
+		}
+		
+		</style>
+	</head>
+	<body>
+		<h1Streams</h1>
+
+		
+		<script>
+		var tree = document.querySelectorAll('ul.tree a:not(:last-child)');
+		for (var i = 0; i < tree.length; i++) {
+		    tree[i].addEventListener('click', function(e) {
+		        var parent = e.target.parentElement;
+		        var classList = parent.classList;
+		        if (classList.contains("open")) {
+		            classList.remove('open');
+		            var opensubs = parent.querySelectorAll(':scope .open');
+		            for (var i = 0; i < opensubs.length; i++) {
+		                opensubs[i].classList.remove('open');
+		            }
+		        } else {
+		            classList.add('open');
+		        }
+		    });
+		}		
+		</script>	
+	</body>
+</html>
