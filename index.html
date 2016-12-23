@@ -95,8 +95,120 @@
 	</li>
 	<li><a href="#">Threads</a>
 		<ul>
-			<li><a href="#">Java EE 8</a></li>
-			<li><a href="#">Java EE 9</a></li>
+			<li><a href="#">Each thread is associated with an instance of the class Thread</a></li>
+			<li><a href="#">Threads communicate primarily by sharing access to fields and the objects reference fields refer to</a></li>
+			<li><a href="#">This form of communication is extremely efficient, but makes two kinds of errors possible: thread interference and memory consistency errors</a></li>
+			<li><a href="#">The tool needed to prevent these errors is synchronization.</a></li>
+			<li><a href="#">Strategies </a>
+				<ul>
+					<li><a href="#">Low level:directly control thread creation and management</a></li>
+					<li><a href="#">High Level: abstract thread management from the rest of your application, pass the application's tasks to an executor</a></li>			 
+				</ul>
+			</li>
+			<li><a href="#">Low Level </a>
+				<ul>
+					<li><a href="#">Provide a Runnable object</a></li>
+					<li><a href="#">Subclass Thread</a></li>			 
+				</ul>			
+			</li>
+			<li><a href="#">API</a>
+				<ul>
+					<li><a href="#">Thread.sleep -  current thread to suspend execution for a specified period</a>
+						<ul>
+							<li><a href="#">sleep time to the millisecond and one that specifies the sleep time to the nanosecond</a>li>
+							<li><a href="#">these sleep times are not guaranteed to be precise-  because they are limited by the facilities provided by the underlying OS</a></li>
+							<li><a href="#">The sleep period can be terminated by interrupts</a></li>	
+							<li><a href="#">you cannot assume that invoking sleep will suspend the thread for precisely the time period specified</a></li>								
+							<li><a href="#">throws InterruptedException</a></li>
+						</ul>					
+					</li>
+					<li><a href="#">Interrupt is an indication to a thread that it should stop what it is doing and do something else</a>
+						<ul>
+							<li><a href="#">A thread sends an interrupt by invoking interrupt on the Thread object for the thread to be interrupted.</li>
+							<li><a href="#">Thread.interrupt sets interrupt flag</a></li>	
+							<li><a href="#">Thread.interrupted, interrupt status is cleared</a></li>
+							<li><a href="#">isInterrupted : non-static  method, which is used by one thread to query the interrupt status of another, does not change the interrupt status flag</a></li>
+							<li><a href="#">By convention, any method that exits by throwing an InterruptedException clears interrupt status when it does so</a></li>
+							<li><a href="#">However, it's always possible that interrupt status will immediately be set again, by another thread invoking interrupt.</a></li>						
+						</ul>
+					</li>	
+					<li><a href="#">Join : one thread to wait for the completion of another</a>
+						<ul>
+							<li><a href="#">Overloads of join allow the programmer to specify a waiting period.</a></li>
+							<li><a href="#">as with sleep, join is dependent on the OS for timing, so you should not assume that join will wait exactly as long as you specify</a></li>
+							<li><a href="#">Like sleep, join responds to an interrupt by exiting with an InterruptedException</a></li>	
+						</ul>
+					</li>					
+				</ul>			
+			</li>	
+			<li><a href="#">Communication - Threads communicate primarily by sharing access to fields and the objects reference fields refer to</a>
+				<ul>
+					<li><a href="#">interference : Interference happens when two operations, running in different threads, but acting on the same data, interleave</a></li>
+					<li><a href="#">memory consistency errors : Memory consistency errors occur when different threads have inconsistent views of what should be the same data. soln: maintain  happens-before relationships.</a></li>
+					<li><a href="#">Prevention - synchronization  - results in contention</a>
+					<li><a href="#">synchronization</a>
+						<ul>
+							<li><a href="#">synchronized methods</a>
+								<ul>
+									<li><a href="#">It is not possible for two invocations of synchronized methods on the same object to interleave</a></li>
+									<li><a href="#">When one thread is executing a synchronized method for an object, all other threads that invoke synchronized methods for the same object block (suspend execution) until the first thread is done with the object</a></li>
+									<li><a href="#">Second, when a synchronized method exits, it automatically establishes a happens-before relationship with any subsequent invocation of a synchronized method for the same object.</a></li>
+									<li><a href="#">Note that constructors cannot be synchronized — using the synchronized keyword with a constructor is a syntax error. </a></li>
+									<li><a href="#">Synchronized methods enable a simple strategy for preventing thread interference and memory consistency errors</a></li>
+									<li><a href="#">This strategy is effective, but can present problems with liveness</a></li>		
+									<li><a href="#">When a thread invokes a synchronized method, it automatically acquires the intrinsic lock for that method's object and releases it when the method returns.</a></li>
+									<li><a href="#">The lock release occurs even if the return was caused by an uncaught exception.</a></li>
+									<li><a href="#">You might wonder what happens when a static synchronized method is invoked, since a static method is associated with a class, not an object. </a></li>
+									<li><a href="#">In this case, the thread acquires the intrinsic lock for the Class object associated with the class.</a></li>
+									<li><a href="#">Thus access to class's static fields is controlled by a lock that's distinct from the lock for any instance of the class.</a></li>
+									<li><a href="#"></a></li>
+
+
+								</ul>
+							</li>
+							<li><a href="#">synchronized statements</a>
+								<ul>
+									<li><a href="#">Synchronization is built around an internal entity known as the intrinsic lock or monitor lock.</a></li>
+									<li><a href="#">Every object has an intrinsic lock associated with it</a></li>
+									<li><a href="#">When a thread releases an intrinsic lock, a happens-before relationship is established between that action and any subsequent acquisition of the same lock.</a></li>
+									<li><a href="#"> Unlike synchronized methods, synchronized statements must specify the object that provides the intrinsic lock</a></li>
+									<li><a href="#">Reentrant Synchronization: Allowing a thread to acquire the same lock more than once enables reentrant synchronization.</a></li>
+									<li><a href="#"></a></li>
+									<li><a href="#"></a></li>
+									<li><a href="#"></a></li>		
+								</ul>
+							</li>
+							<li><a href="#">Atomic Access</a>
+								<ul>
+									<li><a href="#">atomic action is one that effectively happens all at once.</a></li>
+									<li><a href="#">Reads and writes are atomic for reference variables and for most primitive variables (all types except long and double). </a></li>
+									<li><a href="#">Reads and writes are atomic for all variables declared volatile (including long and double variables).</a></li>
+									<li><a href="#">Atomic actions cannot be interleaved, so they can be used without fear of thread interference</a></li>
+									<li><a href="#">However, this does not eliminate all need to synchronize atomic actions, because memory consistency errors are still possible</a></li>
+									<li><a href="#">does not avoid memory consistency errors.</a></li>
+									<li><a href="#"> java.util.concurrent package provide atomic methods that do not rely on synchronization</a></li>		
+								</ul>
+							</li>
+							<li><a href="#">Liveness: A concurrent application's ability to execute in a timely manner is known as its liveness.below are liveness problem<a>
+								<ul>
+									<li><a href="#">Deadlock: describes a situation where two or more threads are blocked forever, waiting for each other.</a></li>
+									<li><a href="#">Starvation : describes a situation where a thread is unable to gain regular access to shared resources and is unable to make progress</a></li>
+									<li><a href="#">Livelock : livelocked threads are unable to make further progress. However, the threads are not blocked — they are simply too busy responding to each other to resume work.</a></li>
+									<li><a href="#"></a></li>
+									<li><a href="#"></a></li>
+									<li><a href="#"></a></li>
+									<li><a href="#"></a></li>
+									<li><a href="#"></a></li>		
+								</ul>
+							</li>
+							<li><a href="#"></a></li>
+							<li><a href="#"></a></li>
+							<li><a href="#"></a></li>
+							<li><a href="#"></a></li>		
+						</ul>
+					</li>						
+				</ul>
+			</li>			
 		</ul>
 	</li>		 
  </ul>
@@ -108,13 +220,17 @@
 	
 		
 <ul class="tree">
-<li><a href="#">SQL Tuning</a>
- <ul>
-	  <li>
-	  </li>
-	  <li>
-	  </li>			 
- </ul>
+<li><a href="#"></a>
+	<ul>
+		<li><a href="#"></a></li>
+		<li><a href="#"></a></li>
+		<li><a href="#"></a></li>
+		<li><a href="#"></a></li>
+		<li><a href="#"></a></li>
+		<li><a href="#"></a></li>
+		<li><a href="#"></a></li>
+		<li><a href="#"></a></li>		
+	</ul>
 </li>
 </ul>
 		
