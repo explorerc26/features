@@ -193,15 +193,41 @@
 								<ul>
 									<li><a href="#">Deadlock: describes a situation where two or more threads are blocked forever, waiting for each other.</a></li>
 									<li><a href="#">Starvation : describes a situation where a thread is unable to gain regular access to shared resources and is unable to make progress</a></li>
-									<li><a href="#">Livelock : livelocked threads are unable to make further progress. However, the threads are not blocked — they are simply too busy responding to each other to resume work.</a></li>
-									<li><a href="#"></a></li>
-									<li><a href="#"></a></li>
-									<li><a href="#"></a></li>
-									<li><a href="#"></a></li>
-									<li><a href="#"></a></li>		
+									<li><a href="#">Livelock : livelocked threads are unable to make further progress. However, the threads are not blocked — they are simply too busy responding to each other to resume work.</a></li>		
 								</ul>
 							</li>
-							<li><a href="#"></a></li>
+							<li><a href="#">guarded block : The most common coordination idiom </a>
+								<ul>											
+									<li><a href="#">Such a block begins by polling a condition that must be true before the block can proceed</a></li>
+									<li><a href="#">A more efficient guard invokes Object.wait to suspend the current thread. </a></li>
+									<li><a href="#">Always invoke wait inside a loop that tests for the condition being waited for.</a></li>
+									<li><a href="#">Like many methods that suspend execution, wait can throw InterruptedException.</a></li>
+									<li><a href="#">Suppose d is the object we're using to invoke wait. When a thread invokes d.wait, it must own the intrinsic lock for d — otherwise an error is thrown. Invoking wait inside a synchronized method is a simple way to acquire the intrinsic lock.</a></li>
+									<li><a href="#">When wait is invoked, the thread releases the lock and suspends execution. </a></li>
+									<li><a hre="#">notify/notifyAll don't release locks like wait does. The awakened thread can't run until the code which called notify releases its lock.</a></li>
+								</ul>
+								
+							</li>
+							<li><a href="#">Immutable Objects:state cannot change after it is constructed</a>
+								<ul>											
+									<li><a href="#">Since they cannot change state, they cannot be corrupted by thread interference or observed in an inconsistent state.</a></li>
+									<li><a href="#">Programmers are often reluctant to employ immutable objects, because they worry about the cost of creating a new object as opposed to updating an object in place. </a></li>
+									<li><a href="#">Strategy</a>
+										<ul>
+											<li><a href="#">Don't provide "setter" methods — methods that modify fields or objects referred to by fields.</a></li>
+											<li><a href="#">Make all fields final and private.</a></li>
+											<li><a href="#">Don't allow subclasses to override methods. The simplest way to do this is to declare the class as final. A more sophisticated approach is to make the constructor private and construct instances in factory methods.</a></li>
+											<li><a href="#">If the instance fields include references to mutable objects, don't allow those objects to be changed:</a></li>
+											<li><a href="#">Don't provide methods that modify the mutable objects.</a></li>
+											<li><a href="#">Don't share references to the mutable objects. Never store references to external, mutable objects passed to the constructor; if necessary, create copies, and store references to the copies. Similarly, create copies of your internal mutable objects when necessary to avoid returning the originals in your methods.</a></li>
+										</ul>
+									</li>
+									<li><a href="#"></a></li>
+								</ul>
+								
+							</li>
+								
+								
 							<li><a href="#"></a></li>
 							<li><a href="#"></a></li>
 							<li><a href="#"></a></li>		
@@ -220,16 +246,27 @@
 	
 		
 <ul class="tree">
-<li><a href="#"></a>
+<li><a href="#">High Level Concurrency </a>
 	<ul>
-		<li><a href="#"></a></li>
-		<li><a href="#"></a></li>
-		<li><a href="#"></a></li>
-		<li><a href="#"></a></li>
-		<li><a href="#"></a></li>
-		<li><a href="#"></a></li>
-		<li><a href="#"></a></li>
-		<li><a href="#"></a></li>		
+Lock objects 
+	Lock objects work very much like the implicit locks used by synchronized code. 
+	 As with implicit locks, only one thread can own a Lock object at a time. Lock objects also support a wait/notify mechanism, through their associated Condition objects.
+	 The biggest advantage of Lock objects over implicit locks is their ability to back out of an attempt to acquire a lock.
+	 The tryLock method backs out if the lock is not available immediately or before a timeout expires (if specified). 
+	 The lockInterruptibly method backs out if another thread sends an interrupt before the lock is acquired.
+	 
+Executors define a high-level API for launching and managing threads. 
+	Executor Interfaces define the three executor object types.
+		Executor, a simple interface that supports launching new tasks.
+		ExecutorService, a subinterface of Executor, which adds features that help manage the lifecycle, both of the individual tasks and of the executor itself.
+		ScheduledExecutorService, a subinterface of ExecutorService, supports future and/or periodic execution of tasks.
+	Thread Pools are the most common kind of executor implementation.
+	Fork/Join is a framework (new in JDK 7) for taking advantage of multiple processors.
+
+
+Concurrent collections make it easier to manage large collections of data, and can greatly reduce the need for synchronization.
+Atomic variables have features that minimize synchronization and help avoid memory consistency errors.
+ThreadLocalRandom (in JDK 7) provides efficient generation of pseudorandom numbers from multiple threads.	
 	</ul>
 </li>
 </ul>
