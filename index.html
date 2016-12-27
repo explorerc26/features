@@ -246,29 +246,60 @@
 	
 		
 <ul class="tree">
-<li><a href="#">High Level Concurrency </a>
-	<ul>
-Lock objects 
-	Lock objects work very much like the implicit locks used by synchronized code. 
-	 As with implicit locks, only one thread can own a Lock object at a time. Lock objects also support a wait/notify mechanism, through their associated Condition objects.
-	 The biggest advantage of Lock objects over implicit locks is their ability to back out of an attempt to acquire a lock.
-	 The tryLock method backs out if the lock is not available immediately or before a timeout expires (if specified). 
-	 The lockInterruptibly method backs out if another thread sends an interrupt before the lock is acquired.
-	 
-Executors define a high-level API for launching and managing threads. 
-	Executor Interfaces define the three executor object types.
-		Executor, a simple interface that supports launching new tasks.
-		ExecutorService, a subinterface of Executor, which adds features that help manage the lifecycle, both of the individual tasks and of the executor itself.
-		ScheduledExecutorService, a subinterface of ExecutorService, supports future and/or periodic execution of tasks.
-	Thread Pools are the most common kind of executor implementation.
-	Fork/Join is a framework (new in JDK 7) for taking advantage of multiple processors.
+	<li><a href="#">High Level Concurrency </a>
+		<ul>
+			<li><a href="#">Lock objects </a>
+				<ul>
+					<li>Lock objects work very much like the implicit locks used by synchronized code.</li>
+					<li>As with implicit locks, only one thread can own a Lock object at a time. Lock objects also support a wait/notify mechanism, through their associated Condition objects.</li>
+					<li>The biggest advantage of Lock objects over implicit locks is their ability to back out of an attempt to acquire a lock.</li>
+					<li>The tryLock method backs out if the lock is not available immediately or before a timeout expires (if specified). </li>
+					<li>The lockInterruptibly method backs out if another thread sends an interrupt before the lock is acquired.</li>
+					<li><a href="#">Locks Package</a>
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
 
-
-Concurrent collections make it easier to manage large collections of data, and can greatly reduce the need for synchronization.
-Atomic variables have features that minimize synchronization and help avoid memory consistency errors.
-ThreadLocalRandom (in JDK 7) provides efficient generation of pseudorandom numbers from multiple threads.	
-	</ul>
-</li>
+			<li><a href="#">Executors define a high-level API for launching and managing threads.</a>
+				<ul>
+					<li><a href="#">Executor Interfaces define the three executor object types.</a>
+						<ul>
+							<li>Executor, a simple interface that supports launching new tasks.</li>
+							<li>ExecutorService, a subinterface of Executor, which adds features that help manage the lifecycle, both of the individual tasks and of the executor itself.</li>
+							<li>ScheduledExecutorService, a subinterface of ExecutorService, supports future and/or periodic execution of tasks.</li>		
+						</ul>
+					</li>
+					<li>Thread Pools are the most common kind of executor implementation.</li>
+					<li>Fork/Join is a framework (new in JDK 7) for taking advantage of multiple processors.</li>
+				</ul>
+			</li>
+			<li><a href="#">Concurrent collections </a>
+				<ul>
+					<li>Concurrent collections make it easier to manage large collections of data, and can greatly reduce the need for synchronization.</li>
+				</ul>
+			</li>
+			<li><a href="#">Atomic variables</a>
+				<ul>
+					<li>Atomic variables have features that minimize synchronization and help avoid memory consistency errors.</li>
+				</ul>
+			</li>
+			<li><a href="#">Atomic variables</a>
+				<ul>
+					<li>Atomic variables have features that minimize synchronization and help avoid memory consistency errors.</li>
+				</ul>
+			</li>	
+			<li><a href="#">ThreadLocalRandom</a>
+				<ul>
+					<li>ThreadLocalRandom (in JDK 7) provides efficient generation of pseudorandom numbers from multiple threads.	</li>
+				</ul>
+			</li>	
+		</ul>
+	</li>
 </ul>
 		
 <div>
