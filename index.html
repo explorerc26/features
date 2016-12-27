@@ -204,7 +204,7 @@
 									<li><a href="#">Like many methods that suspend execution, wait can throw InterruptedException.</a></li>
 									<li><a href="#">Suppose d is the object we're using to invoke wait. When a thread invokes d.wait, it must own the intrinsic lock for d — otherwise an error is thrown. Invoking wait inside a synchronized method is a simple way to acquire the intrinsic lock.</a></li>
 									<li><a href="#">When wait is invoked, the thread releases the lock and suspends execution. </a></li>
-									<li><a hre="#">notify/notifyAll don't release locks like wait does. The awakened thread can't run until the code which called notify releases its lock.</a></li>
+									<li><a href="#">notify/notifyAll don't release locks like wait does. The awakened thread can't run until the code which called notify releases its lock.</a></li>
 								</ul>
 								
 							</li>
@@ -301,10 +301,51 @@
 		</ul>
 	</li>
 </ul>
-		
+	
+<ul class="tree">
+	<li><a href="#">java.lang classes</a>
+		<ul>
+			<li><a href="#">ThreadLocal</a>
+				<ul>
+					<li><a href="#">Internally stores in ThreadLocalMap of the thread. Each thread has ThreadLocal.ThreadLocalMap for thread locals<a></li>
+					<li><a href="#">The ThreadLocal class in Java enables you to create variables that can only be read and written by the same thread.</a></li>
+					<li><a href="#">InheritableThreadLocal: The InheritableThreadLocal class is a subclass of ThreadLocal.Instead of each thread having its own value inside a ThreadLocal, the InheritableThreadLocal grants access to values to a thread and all child threads created by that thread.</a>
+					<li><a href="#">Since values set on a ThreadLocal object only are visible to the thread who set the value, no thread can set an initial value on a ThreadLocal using set() which is visible to all threads.</a>
+					<li><a href="#">Instead you can specify an initial value for a ThreadLocal object by subclassing ThreadLocal and overriding the initialValue() method</a>
+				</ul>
+			</li>
+			<li><a href="#">wait(), notify() and notifyAll() on Object</a>
+				<ul>
+					<li><a href="#">used for Signaling via Shared Objects</a></li>
+					<li><a href="#">Busy waiting- waiting for a boolean/signal in loop - not a very efficient utilization of the CPU</a></li>
+					<li><a href="#">A thread that calls wait() on any object becomes inactive until another thread calls notify() on that object.</a></li>
+					<li><a href="#">To call either wait() or notify the calling thread must first obtain the lock on that object.Should be in synchronized else  IllegalMonitorStateException</a></li>
+					<li><a href="#">Once a thread calls wait() it releases the lock it holds on the monitor object</a></li>
+					<li><a href="#">Once a thread is awakened it cannot exit the wait() call until the thread calling notify() has left its synchronized block.</a></li>
+					<li><a href="#">The awakened thread must reobtain the lock on the monitor object before it can exit the wait() call, because the wait call is nested inside a synchronized block. If multiple threads are awakened using notifyAll() only one awakened thread at a time can exit the wait() method, since each thread must obtain the lock on the monitor object in turn before exiting wait().</a></li>
+					<li><a href="#">Missed Signals:Therefore, if a thread calls notify() before the thread to signal has called wait(), the signal will be missed by the waiting thread.</a></li>
+					<li><a href="#">Spurious Wakeups:For inexplicable reasons it is possible for threads to wake up even if notify() and notifyAll() has not been called. </a></li>
+					<li><a href="#">To guard against spurious wakeups the signal member variable is checked inside a while loop instead of inside an if-statement. Such a while loop is also called a spin lock.</a></li>
+					<li><a href="#">Don't call wait() on constant String's or global objects- ex String literals, interns etc</a></li>
+				</ul>
+			</li>
+			<li>
+				<ul>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+				</ul>
+			</li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</li>
+</ul>	
 <div>
 	<h3>Concurrency</h3>
 	<div>http://tutorials.jenkov.com/java-concurrency/index.html</div>
+	http://tutorials.jenkov.com/java-util-concurrent/semaphore.html
 </div>
 		
 				
