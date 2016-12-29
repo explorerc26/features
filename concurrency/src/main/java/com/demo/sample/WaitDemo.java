@@ -2,6 +2,20 @@ package com.demo.sample;
 
 import com.demo.sample.model.Monitor;
 
+/**
+ * wait should be in synchronized - sleep need not be 
+ * wait will give away locks - sleep will hold it 
+ * need notify or notifyall for the waitiung thread to come out - sleep after timeout 
+ * notify or notify call should be called in synchronized block and after completing 
+ * the execution , the eligible waiting thread will start running if it gets back the lock
+ * 
+ * 
+ *.sleep(n) says “I’m done with my timeslice, and please don’t give me another one for at least n milliseconds.” The OS doesn’t even try to schedule the sleeping thread until requested time has passed.
+ *.yield() says “I’m done with my timeslice, but I still have work to do.” The OS is free to immediately give the thread another timeslice, or to give some other thread or process the CPU the yielding thread just gave up.
+ *.wait() says “I’m done with my timeslice. Don’t give me another timeslice until someone calls notify().” 
+ * 
+ *Thread.sleep() from a synchronized block is likely not a good idea.
+ */
 public class WaitDemo {
 
 	public static class Sample implements Runnable {
