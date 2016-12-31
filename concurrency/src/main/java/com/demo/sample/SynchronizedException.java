@@ -50,6 +50,9 @@ public class SynchronizedException {
 		Thread t2 = new Thread(new Sample(p));
 		t1.start();
 		t2.start();
+		//Q: what happens after exception
+		// nothing there wont be any interrupt - there wont be any exception parent thread will 
+		// continue as normal
 		try {
 			t1.join();
 			System.out.println("no excpetion or interrupt");
